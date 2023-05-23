@@ -64,6 +64,22 @@ class SketchPad
             this.isDrawing = false
         }
 
+
+        this.canvas.ontouchstart = (evt) => {
+            const loc = evt.touches[0]
+            this.canvas.onmousedown(loc)
+        }
+
+        this.canvas.ontouchmove = (evt) => {
+            const loc = evt.touches[0]
+            this.canvas.onmousemove(loc)
+        }
+
+         document.ontouchend = () => {
+           
+            this.canvas.onmouseup()
+         }
+
         this.undoBtn.onclick = () =>{
             this.paths.pop()
             this.#rd()
